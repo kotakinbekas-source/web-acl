@@ -46,22 +46,23 @@ body {
 /* Latar gelap visual diburamkan + lapisan biru keunguan dingin */
 .bg {
   position: fixed;
-  inset: -60px;
+  inset: -40px;
   z-index: -3;
   background:
-    radial-gradient(55% 48% at 18% 22%, rgba(76, 63, 172, 0.72) 0%, transparent 70%),
-    radial-gradient(52% 46% at 82% 26%, rgba(40, 82, 168, 0.68) 0%, transparent 70%),
-    radial-gradient(58% 52% at 50% 88%, rgba(88, 46, 148, 0.65) 0%, transparent 72%),
-    radial-gradient(40% 40% at 50% 45%, rgba(28, 34, 84, 0.6) 0%, transparent 75%),
-    #080816;
-  filter: blur(46px);
+    url("bg-hall.jpg") center 42% / cover no-repeat;
+	filter: blur(16px) brightness(0.50) saturate(1.1);
+	transform: scale(1.06);
 }
 
 .ov {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: linear-gradient(180deg, rgba(11, 11, 30, 0.48) 0%, rgba(8, 8, 22, 0.86) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(22, 20, 64, 0.56) 0%,
+    rgba(10, 10, 28, 0.86) 100%
+  );
 }
 
 #fx {
@@ -202,7 +203,7 @@ a:focus-visible {
 
 .pills.center {
   justify-content: center;
-  max-width: 780px;
+  max-width: 820px;
   margin: 0 auto 28px;
 }
 
@@ -471,7 +472,7 @@ h2 {
   border-bottom: 1px solid var(--line);
 }
 
-.res-group:first-of-type {
+.pills + .res-group {
   border-top: 1px solid var(--line);
 }
 
@@ -624,10 +625,10 @@ h2 {
   color: var(--mut);
 }
 
-/* Grid & Kartu Umum (Knowledges) */
+/* Grid & Kartu Umum */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(285px, 100%), 1fr));
   gap: 18px;
 }
 
@@ -646,10 +647,15 @@ h2 {
   transition: transform 0.2s, border-color 0.2s, background 0.2s;
 }
 
-.card:hover {
+.card:hover,
+.card.on {
   transform: translateY(-3px);
   border-color: var(--acc);
   background: var(--card-hover);
+}
+
+.card.on {
+  box-shadow: 0 10px 30px rgba(130, 114, 255, 0.16);
 }
 
 .cat {
@@ -670,6 +676,21 @@ h2 {
   color: var(--mut);
   font-size: 14px;
   flex: 1;
+}
+
+.card .ft {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(188, 178, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--mut);
+}
+
+.card .ft span:last-child {
+  color: var(--acc);
 }
 
 /* Kartu Video Knowledges */
@@ -775,12 +796,59 @@ h2 {
   background: #14122f;
 }
 
-/* Daftar Artikel per Tag */
+/* Halaman Articles (Acuan Struktur Direktori Topik & Tag) */
+.art-subhead {
+  margin-top: 38px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.art-subhead h3 {
+  font: 400 24px/1.25 "Cormorant Garamond", Georgia, serif;
+  color: #fff;
+}
+
+.art-subhead span {
+  font-size: 13px;
+  color: var(--mut);
+}
+
+.tag-banner {
+  margin-top: 34px;
+  margin-bottom: 8px;
+  background: rgba(24, 22, 54, 0.72);
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  padding: 20px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  backdrop-filter: blur(12px);
+}
+
+.tag-banner-info h3 {
+  font: 500 20px/1.3 "Inter", sans-serif;
+  color: #fff;
+  margin: 4px 0;
+}
+
+.tag-banner-info p {
+  font-size: 14px;
+  color: var(--mut);
+  max-width: 62ch;
+}
+
 .article-list {
   display: flex;
   flex-direction: column;
   border-top: 1px solid var(--line);
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
 .article-row {
@@ -807,7 +875,8 @@ h2 {
 .article-meta {
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px 10px;
   font-size: 12px;
   color: var(--acc);
   margin-bottom: 6px;
@@ -817,7 +886,23 @@ h2 {
   color: var(--mut);
 }
 
-.article-row h3 {
+.article-tags-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mini-tag {
+  font-size: 11px;
+  color: var(--mut);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(188, 178, 255, 0.18);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.article-row h4 {
   font: 500 18px/1.35 "Inter", sans-serif;
   color: #fff;
   margin-bottom: 6px;
@@ -865,7 +950,7 @@ h2 {
 
 .modal {
   width: 100%;
-  max-width: 680px;
+  max-width: 700px;
   max-height: 88vh;
   overflow-y: auto;
   background: #11102a;
@@ -901,14 +986,49 @@ h2 {
 }
 
 .modal h3 {
-  font: 500 22px/1.3 "Inter", sans-serif;
+  font: 500 22px/1.32 "Inter", sans-serif;
   margin-bottom: 12px;
+  color: #fff;
+}
+
+.modal h4 {
+  font: 500 16px/1.4 "Inter", sans-serif;
+  color: #e4dfff;
+  margin: 20px 0 8px;
 }
 
 .modal p {
   color: var(--mut);
   font-size: 15px;
+  line-height: 1.75;
   margin-bottom: 14px;
+}
+
+.takeaways {
+  background: rgba(189, 176, 255, 0.07);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--acc);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0 20px;
+}
+
+.takeaways-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 8px;
+}
+
+.takeaways ul {
+  padding-left: 18px;
+  color: var(--tx);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .code-box {
@@ -924,9 +1044,13 @@ h2 {
 
 .modal-actions {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(188, 178, 255, 0.14);
 }
 
 .btn-primary {
@@ -988,9 +1112,15 @@ footer {
     padding: 24px 16px 56px;
   }
   nav {
-    gap: 12px 22px;
+    flex-wrap: nowrap;
+    gap: 14px;
     margin: 28px 0 20px;
-    flex-wrap: wrap;
+  }
+  nav button {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    padding: 8px 2px;
+    white-space: nowrap;
   }
   .chat-box {
     padding: 6px 6px 6px 14px;
@@ -1046,7 +1176,8 @@ footer {
         <button class="pill" data-go="knowledges" data-q="24/7">Bangun AI Agent 24/7</button>
         <button class="pill" data-go="resources" data-cat="Prompt & Evaluasi Kualitas">Prompt Architecture</button>
         <button class="pill" data-go="knowledges" data-q="Income">AI Income Blueprint</button>
-        <button class="pill" data-go="articles" data-tag="Otomasi Alur Kerja">Strategi Otomasi</button>
+        <button class="pill" data-go="articles" data-art-mode="topic" data-art-val="Strategi AI Creator">Panduan AI Creator</button>
+        <button class="pill" data-go="articles" data-art-mode="topic" data-art-val="Otomasi Alur Kerja">Strategi Otomasi</button>
       </div>
 
       <div class="chat-wrap">
@@ -1210,77 +1341,367 @@ const VIDEOS = [
   ["Belajar Bangun AI Agent Pertama kamu Dari Nol Hingga LIVE Gak Perlu Coding | LIVE - AI Creator Labs", "xkChjs2fKs0", "1:40:25"]
 ];
 
+/* Struktur Articles: 6 Jalur Topik Utama + Tag Sekunder (Acuan Struktur Direktori Topik) */
+const ARTICLE_TOPICS = [
+  {
+    name: "Strategi AI Creator",
+    desc: "Membangun fondasi cara berpikir, sistem belajar terarah, dan arah berkarya sebagai kreator di era AI."
+  },
+  {
+    name: "Arsitektur Prompt",
+    desc: "Teknik merancang struktur instruksi presisi agar output AI konsisten, terukur, dan minim revisi."
+  },
+  {
+    name: "Sistem AI Agent",
+    desc: "Merancang asisten AI mandiri, pembagian peran multi-agent, serta struktur memori dan basis pengetahuan."
+  },
+  {
+    name: "Otomasi Alur Kerja",
+    desc: "Menghubungkan formulir, dokumen, dan asisten AI tanpa coding untuk memangkas pekerjaan repetitif."
+  },
+  {
+    name: "Produksi & Kurasi Konten",
+    desc: "Mengubah riset dan ide mentah menjadi karya edukasi bernilai tinggi tanpa kehilangan sentuhan manusia."
+  },
+  {
+    name: "Monetisasi & Layanan AI",
+    desc: "Mengemas keahlian AI menjadi sistem siap pakai, produk digital, dan layanan bernilai nyata bagi klien."
+  }
+];
+
+const SECONDARY_TAGS = [
+  { name: "Riset & Validasi", desc: "Metode membedah topik baru, menguji asumsi, dan memverifikasi fakta secara berlapis." },
+  { name: "Knowledge Base", desc: "Cara menyusun SOP, catatan, dan dokumen referensi agar mudah dibaca AI tanpa halusinasi." },
+  { name: "Produktivitas Solo", desc: "Ritme kerja harian kreator mandiri dalam mengelola waktu dan fokus bersama asisten AI." },
+  { name: "Evaluasi Kualitas", desc: "Standar penyuntingan dan rubrik audit agar hasil kerja AI tetap tajam dan natural." },
+  { name: "Studi Kasus", desc: "Bedah penerapan nyata alur kerja dan arsitektur AI di lapangan langkah demi langkah." }
+];
+
 const ARTICLES = [
   {
     id: "arsitektur-ruang-belajar",
-    tag: "Strategi AI Creator",
+    topic: "Strategi AI Creator",
+    tags: ["Produktivitas Solo"],
     readTime: "5 mnt baca",
     title: "Mengapa Kreator AI Butuh Sistem Belajar Terarah, Bukan Sekadar Kumpulan Prompt",
     excerpt: "Menyimpan ratusan prompt acak sering kali membuat kita kewalahan. Pelajari cara menyusun fondasi sistem yang benar-benar terpakai.",
-    body: [
-      "Banyak pembelajar AI terjebak mengumpulkan ratusan template tanpa pernah membangun satu alur kerja yang selesai dari awal hingga akhir. Akibatnya, setiap kali menghadapi proyek baru, kita kembali mulai dari nol.",
-      "Pendekatan yang lebih tenang dan efektif adalah membangun sistem modular: satu kerangka riset, satu kerangka penulisan, dan satu kerangka evaluasi kualitas. Ketiganya saling terhubung dan terus disempurnakan seiring bertambahnya jam terbang.",
-      "Mulailah dari satu masalah nyata yang paling sering menyita waktu Anda minggu ini, lalu rancang solusi AI yang sederhana namun konsisten."
+    takeaways: [
+      "Kumpulan prompt tanpa alur kerja hanya memindahkan kebingungan dari halaman kosong ke folder catatan.",
+      "Bangun tiga modul inti: sistem riset, kerangka produksi, dan rubrik audit kualitas.",
+      "Sempurnakan satu alur kerja secara bertahap berdasarkan masalah nyata mingguan."
+    ],
+    sections: [
+      {
+        heading: "Jebakan Mengoleksi Template Tanpa Konteks",
+        paragraphs: [
+          "Banyak pembelajar AI terjebak mengumpulkan ratusan template dari media sosial tanpa pernah membangun satu alur kerja yang selesai dari awal hingga akhir. Akibatnya, setiap kali menghadapi proyek baru, kita kembali mulai dari nol.",
+          "Ketika sebuah instruksi tidak memiliki posisi jelas dalam proses kerja, hasilnya pun sulit diulang secara konsisten."
+        ]
+      },
+      {
+        heading: "Membangun Sistem Belajar Modular",
+        paragraphs: [
+          "Pendekatan yang lebih tenang dan efektif adalah membangun sistem modular: satu kerangka riset untuk mengumpulkan bahan mentah, satu kerangka penulisan untuk menyusun struktur, dan satu kerangka evaluasi untuk menjaga standar.",
+          "Mulailah dari satu tugas yang paling sering menyita waktu Anda minggu ini, lalu rancang alur AI yang sederhana namun dapat diandalkan."
+        ]
+      }
     ]
   },
   {
-    id: "koloni-ai-agent",
-    tag: "Sistem AI Agent",
-    readTime: "7 mnt baca",
-    title: "Memahami Konsep Multi-Agent: Kapan Cukup Satu AI dan Kapan Butuh Tim Agent?",
-    excerpt: "Tidak semua masalah memerlukan arsitektur rumit. Kenali batas efektivitas satu asisten AI sebelum memecahnya menjadi beberapa peran.",
-    body: [
-      "Kesalahan paling umum saat mulai membangun AI Agent adalah langsung membuat banyak agen sekaligus untuk tugas yang sebenarnya bisa ditangani satu instruksi terstruktur.",
-      "Gunakan satu agen tunggal ketika tugas bersifat linear. Pecah menjadi beberapa agen (perencana, eksekutor, dan pemeriksa) hanya ketika tugas membutuhkan riset mendalam, pengecekan silang, atau dijalankan secara terjadwal di server.",
-      "Dengan pembagian peran yang jelas, setiap agen memiliki fokus konteks yang sempit sehingga tingkat akurasinya jauh lebih tinggi."
-    ]
-  },
-  {
-    id: "anatomi-prompt-presisi",
-    tag: "Arsitektur Prompt",
-    readTime: "4 mnt baca",
-    title: "Anatomi Instruksi Presisi: Mengubah Jawaban Umum Menjadi Analisis Tajam",
-    excerpt: "Perbedaan antara jawaban AI yang klise dan analisis mendalam terletak pada kejelasan batasan dan contoh yang Anda berikan.",
-    body: [
-      "Model bahasa cenderung memberikan jawaban rata-rata jika instruksi yang diberikan terlalu luas. Untuk menembus lapisan permukaan tersebut, berikan konteks audiens dan standar kualitas yang spesifik.",
-      "Alih-alih meminta 'buatkan strategi konten', jelaskan siapa pembacanya, masalah utama apa yang sedang mereka hadapi, dan format keputusan apa yang diharapkan di akhir tulisan.",
-      "Menambahkan satu contoh output ideal jauh lebih efektif daripada menulis tiga paragraf penjelasan abstrak."
-    ]
-  },
-  {
-    id: "otomasi-tanpa-coding",
-    tag: "Otomasi Alur Kerja",
+    id: "peta-belajar-kreator-ai",
+    topic: "Strategi AI Creator",
+    tags: ["Riset & Validasi"],
     readTime: "6 mnt baca",
-    title: "Peta Jalan Otomasi Alur Kerja untuk Kreator Solo Tanpa Latar Belakang Coding",
-    excerpt: "Langkah praktis menghubungkan formulir, basis pengetahuan, dan asisten AI agar operasional berjalan rapi di latar belakang.",
-    body: [
-      "Otomasi bukan berarti menyerahkan seluruh kendali kepada mesin, melainkan membebaskan energi manusia dari pekerjaan repetitif seperti menyalin data, merangkum catatan, dan menyusun draf awal.",
-      "Mulailah dengan memetakan tiga titik: pemicu (trigger), proses pengolahan AI, dan tujuan penyimpanan hasil. Pastikan selalu ada titik tinjauan manusia sebelum hasil dikirim ke publik.",
-      "Dalam hitungan minggu, alur kecil ini akan menghemat belasan jam kerja setiap bulannya."
-    ]
-  },
-  {
-    id: "produk-digital-bernilai",
-    tag: "Monetisasi AI",
-    readTime: "6 mnt baca",
-    title: "Merancang Solusi & Layanan Berbasis AI yang Fokus pada Hasil Nyata Klien",
-    excerpt: "Klien tidak membeli kecanggihan teknologi AI—mereka mencari kejelasan, penghematan waktu, dan hasil yang dapat diandalkan.",
-    body: [
-      "Saat menawarkan solusi berbasis AI, hindari terjebak menjelaskan istilah teknis yang membingungkan. Fokuslah pada transformasi sebelum dan sesudah sistem diterapkan.",
-      "Kemas keahlian Anda dalam bentuk sistem siap pakai, pendampingan implementasi, atau layanan produksi terkurasi yang menjaga standar estetika dan kualitas.",
-      "Kepercayaan dibangun dari konsistensi hasil, bukan dari seberapa banyak alat AI yang Anda gunakan."
+    title: "Peta Jalan 30 Hari Memahami Ekosistem AI Tanpa Terjebak FOMO Teknologi",
+    excerpt: "Setiap minggu muncul model dan aplikasi baru. Ini cara menyaring mana yang relevan untuk karya Anda dan mana yang cukup dilewati.",
+    takeaways: [
+      "Fokus pada pola kemampuan model bahasa, bukan sekadar mengejar setiap rilis aplikasi baru.",
+      "Gunakan aturan 80/20: kuasai dua alat utama secara mendalam sebelum mencoba alat tambahan.",
+      "Ukur kemajuan belajar dari proyek selesai, bukan jumlah fitur yang dicoba."
+    ],
+    sections: [
+      {
+        heading: "Membedakan Fondasi dan Tren Sesaat",
+        paragraphs: [
+          "Perubahan alat AI berlangsung sangat cepat, tetapi prinsip dasar komunikasi dengan model bahasa relatif stabil: kejelasan konteks, batasan format, dan kualitas bahan referensi.",
+          "Dengan memahami prinsip ini, Anda bisa berpindah antarplatform dengan cepat tanpa kehilangan ritme kerja."
+        ]
+      },
+      {
+        heading: "Ritme Eksperimen Mingguan yang Tenang",
+        paragraphs: [
+          "Sisihkan satu sesi khusus di akhir pekan untuk menguji satu alur kerja baru pada proyek nyata. Jika alur tersebut menghemat waktu dan meningkatkan kualitas, simpan ke pustaka sistem Anda."
+        ]
+      }
     ]
   },
   {
     id: "menjaga-sentuhan-manusia",
-    tag: "Strategi AI Creator",
+    topic: "Strategi AI Creator",
+    tags: ["Evaluasi Kualitas"],
     readTime: "5 mnt baca",
     title: "Menjaga Rasa, Empati, dan Karakter Manusia di Era Produksi Konten AI",
     excerpt: "Bagaimana memanfaatkan kecepatan AI tanpa kehilangan sudut pandang personal yang membuat karya Anda unik.",
-    body: [
-      "AI sangat unggul dalam menyusun struktur, merangkum pola, dan mempercepat eksplorasi ide. Namun pengalaman hidup, selera estetika, dan kepekaan terhadap audiens tetap berasal dari manusia.",
-      "Gunakan AI sebagai mitra diskusi di tahap awal dan penyunting di tahap akhir, sementara inti cerita dan keputusan rasa tetap berada di tangan Anda.",
-      "Karya yang bertahan lama selalu memadukan efisiensi sistem dengan kejujuran perspektif kreatornya."
+    takeaways: [
+      "AI unggul dalam struktur dan sintesis pola, sedangkan empati dan selera estetika berasal dari manusia.",
+      "Posisikan AI sebagai mitra diskusi di tahap awal dan penyunting teknis di tahap akhir.",
+      "Pengalaman lapangan dan contoh konkret adalah pembeda utama karya Anda."
+    ],
+    sections: [
+      {
+        heading: "Pembagian Peran Kreator dan Asisten AI",
+        paragraphs: [
+          "AI sangat unggul dalam menyusun struktur, merangkum pola, dan mempercepat eksplorasi ide. Namun pengalaman hidup, selera estetika, dan kepekaan terhadap audiens tetap berasal dari manusia.",
+          "Gunakan AI sebagai mitra diskusi di tahap awal dan penyunting di tahap akhir, sementara inti cerita dan keputusan rasa tetap berada di tangan Anda."
+        ]
+      }
+    ]
+  },
+  {
+    id: "anatomi-prompt-presisi",
+    topic: "Arsitektur Prompt",
+    tags: ["Evaluasi Kualitas"],
+    readTime: "4 mnt baca",
+    title: "Anatomi Instruksi Presisi: Mengubah Jawaban Umum Menjadi Analisis Tajam",
+    excerpt: "Perbedaan antara jawaban AI yang klise dan analisis mendalam terletak pada kejelasan batasan dan contoh yang Anda berikan.",
+    takeaways: [
+      "Instruksi yang terlalu luas memaksa model bahasa mengambil jalur jawaban rata-rata.",
+      "Sertakan target pembaca, masalah spesifik, dan larangan gaya bahasa yang tidak diinginkan.",
+      "Satu contoh output ideal (few-shot) jauh lebih efektif daripada penjelasan panjang."
+    ],
+    sections: [
+      {
+        heading: "Mengapa Jawaban AI Sering Terasa Generik",
+        paragraphs: [
+          "Model bahasa cenderung memberikan jawaban rata-rata jika instruksi yang diberikan terlalu luas. Untuk menembus lapisan permukaan tersebut, berikan konteks audiens dan standar kualitas yang spesifik.",
+          "Alih-alih meminta 'buatkan strategi konten', jelaskan siapa pembacanya, masalah utama apa yang sedang mereka hadapi, dan format keputusan apa yang diharapkan di akhir tulisan."
+        ]
+      },
+      {
+        heading: "Kekuatan Contoh Referensi Konkret",
+        paragraphs: [
+          "Menambahkan satu contoh output ideal jauh lebih efektif daripada menulis tiga paragraf penjelasan abstrak. Model bahasa akan meniru ritme, panjang kalimat, dan kedalaman analisis dari contoh tersebut."
+        ]
+      }
+    ]
+  },
+  {
+    id: "prompt-berantai-riset",
+    topic: "Arsitektur Prompt",
+    tags: ["Riset & Validasi"],
+    readTime: "6 mnt baca",
+    title: "Teknik Prompt Berantai (Chaining) untuk Membedah Masalah Kompleks",
+    excerpt: "Alih-alih memaksakan semua tugas dalam satu perintah raksasa, pecah proses berpikir AI menjadi tiga tahap yang saling menguji.",
+    takeaways: [
+      "Pisahkan tahap eksplorasi sudut pandang, tahap penyusunan kerangka, dan tahap kritik kelemahan.",
+      "Prompt berantai menurunkan risiko halusinasi dan menjaga fokus konteks di setiap langkah.",
+      "Gunakan tahap akhir khusus untuk mencari celah logika sebelum mengambil keputusan."
+    ],
+    sections: [
+      {
+        heading: "Tiga Tahap Rantai Berpikir",
+        paragraphs: [
+          "Ketika satu prompt memuat terlalu banyak perintah sekaligus, AI cenderung mengabaikan detail di bagian tengah. Memecahnya menjadi tiga langkah kecil membuat setiap tahap dikerjakan secara tuntas.",
+          "Mulailah dengan memetakan fakta, lanjutkan dengan menyusun alternatif solusi, lalu tutup dengan meminta AI mengkritik solusinya sendiri."
+        ]
+      }
+    ]
+  },
+  {
+    id: "koloni-ai-agent",
+    topic: "Sistem AI Agent",
+    tags: ["Studi Kasus"],
+    readTime: "7 mnt baca",
+    title: "Memahami Konsep Multi-Agent: Kapan Cukup Satu AI dan Kapan Butuh Tim Agent?",
+    excerpt: "Tidak semua masalah memerlukan arsitektur rumit. Kenali batas efektivitas satu asisten AI sebelum memecahnya menjadi beberapa peran.",
+    takeaways: [
+      "Gunakan satu agen tunggal untuk tugas linear yang membutuhkan konteks terpadu.",
+      "Pecah menjadi Planner, Worker, dan Reviewer hanya jika tugas melibatkan riset silang atau jadwal otomatis.",
+      "Semakin sempit tanggung jawab satu agen, semakin tinggi tingkat akurasinya."
+    ],
+    sections: [
+      {
+        heading: "Menghindari Over-Engineering di Tahap Awal",
+        paragraphs: [
+          "Kesalahan paling umum saat mulai membangun AI Agent adalah langsung membuat banyak agen sekaligus untuk tugas yang sebenarnya bisa ditangani satu instruksi terstruktur.",
+          "Gunakan satu agen tunggal ketika tugas bersifat linear. Pecah menjadi beberapa agen hanya ketika tugas membutuhkan riset mendalam, pengecekan silang, atau dijalankan secara terjadwal di server."
+        ]
+      }
+    ]
+  },
+  {
+    id: "arsitektur-knowledge-base",
+    topic: "Sistem AI Agent",
+    tags: ["Knowledge Base"],
+    readTime: "5 mnt baca",
+    title: "Merancang Knowledge Base yang Rapi agar AI Agent Tidak Mudah Halusinasi",
+    excerpt: "Kualitas AI Agent sangat bergantung pada kebersihan dokumen rujukannya. Pelajari format penulisan dokumen yang ramah mesin.",
+    takeaways: [
+      "Gunakan struktur heading hierarkis dan kalimat deklaratif yang lugas.",
+      "Pisahkan aturan kebijakan, data produk, dan contoh percakapan ke file terpisah.",
+      "Cantumkan instruksi tegas agar agen mengakui jika informasi tidak tersedia di dokumen."
+    ],
+    sections: [
+      {
+        heading: "Dokumen Rapi, Jawaban Presisi",
+        paragraphs: [
+          "Banyak kegagalan AI Agent bukan disebabkan oleh modelnya, melainkan oleh dokumen sumber yang berantakan, penuh singkatan ambigu, atau saling bertentangan.",
+          "Dengan merapikan SOP menjadi poin-poin terstruktur dan memberi batas tegas ruang lingkup jawaban, tingkat akurasi agen meningkat drastis."
+        ]
+      }
+    ]
+  },
+  {
+    id: "ai-agent-operasional-247",
+    topic: "Sistem AI Agent",
+    tags: ["Knowledge Base"],
+    readTime: "8 mnt baca",
+    title: "Catatan Arsitektur: Menjalankan AI Agent Terjadwal di Server secara Aman",
+    excerpt: "Hal-hal teknis mendasar yang perlu disiapkan saat memindahkan asisten AI dari laptop lokal ke server yang aktif sepanjang waktu.",
+    takeaways: [
+      "Batasi hak akses alat (tool permissions) sesuai kebutuhan minimal setiap agen.",
+      "Pasang pencatatan log aktivitas dan batas biaya harian agar operasional tetap terkendali.",
+      "Sediakan jalur eskalasi ke manusia untuk keputusan yang menyangkut klien atau transaksi."
+    ],
+    sections: [
+      {
+        heading: "Prinsip Keamanan dan Kendali Biaya",
+        paragraphs: [
+          "Menjalankan AI Agent secara mandiri di VPS membuka peluang otomatisasi penuh, namun membutuhkan pagar pengaman yang jelas sejak hari pertama.",
+          "Pastikan setiap agen memiliki batasan langkah eksekusi, log riwayat tindakan yang mudah diaudit, serta notifikasi ringkas ke kanal komunikasi Anda."
+        ]
+      }
+    ]
+  },
+  {
+    id: "otomasi-tanpa-coding",
+    topic: "Otomasi Alur Kerja",
+    tags: ["Produktivitas Solo"],
+    readTime: "6 mnt baca",
+    title: "Peta Jalan Otomasi Alur Kerja untuk Kreator Solo Tanpa Latar Belakang Coding",
+    excerpt: "Langkah praktis menghubungkan formulir, basis pengetahuan, dan asisten AI agar operasional berjalan rapi di latar belakang.",
+    takeaways: [
+      "Petakan alur dalam tiga blok: Pemicu (Trigger), Pemrosesan AI, dan Aksi Penyimpanan.",
+      "Mulai dari proses internal seperti ringkasan catatan sebelum mengotomatisasi komunikasi eksternal.",
+      "Sisipkan titik tinjauan manusia sebelum pesan dikirim ke audiens atau klien."
+    ],
+    sections: [
+      {
+        heading: "Memetakan Tiga Titik Otomasi",
+        paragraphs: [
+          "Otomasi bukan berarti menyerahkan seluruh kendali kepada mesin, melainkan membebaskan energi manusia dari pekerjaan repetitif seperti menyalin data, merangkum catatan, dan menyusun draf awal.",
+          "Mulailah dengan memetakan tiga titik: pemicu (trigger), proses pengolahan AI, dan tujuan penyimpanan hasil. Dalam hitungan minggu, alur kecil ini akan menghemat belasan jam kerja setiap bulannya."
+        ]
+      }
+    ]
+  },
+  {
+    id: "sop-digital-otomatis",
+    topic: "Otomasi Alur Kerja",
+    tags: ["Knowledge Base"],
+    readTime: "5 mnt baca",
+    title: "Mengubah Catatan Harian dan SOP Menjadi Alur Kerja Semi-Otomatis",
+    excerpt: "Setiap tugas yang Anda ulang lebih dari tiga kali layak diubah menjadi template terstruktur yang bisa dijalankan asisten AI.",
+    takeaways: [
+      "Dokumentasikan langkah kerja manual Anda secara kronologis terlebih dahulu.",
+      "Tandai langkah mana yang bersifat pola berulang dan mana yang butuh keputusan kreatif.",
+      "Uji alur semi-otomatis selama satu minggu sebelum menambah integrasi baru."
+    ],
+    sections: [
+      {
+        heading: "Dari Kebiasaan Manual ke Sistem Tertulis",
+        paragraphs: [
+          "Otomasi yang baik selalu berawal dari proses manual yang sudah jelas urutannya. Jika sebuah alur masih membingungkan saat dikerjakan manual, mengotomatiskannya hanya akan mempercepat kekacauan.",
+          "Tuliskan langkah demi langkah standar kerja Anda, lalu serahkan bagian penyusunan draf dan pengelompokan data kepada AI."
+        ]
+      }
+    ]
+  },
+  {
+    id: "riset-konten-terstruktur",
+    topic: "Produksi & Kurasi Konten",
+    tags: ["Riset & Validasi"],
+    readTime: "5 mnt baca",
+    title: "Alur Riset Materi Edukasi 20 Menit: Mengolah Sumber Mentah Menjadi Insight Jernih",
+    excerpt: "Cara menyaring catatan panjang, transkrip workshop, dan referensi teknis menjadi kerangka tulisan yang mudah dicerna.",
+    takeaways: [
+      "Kumpulkan bahan mentah pilihan terlebih dahulu agar AI bekerja berdasarkan sumber terkurasi.",
+      "Minta AI mengelompokkan tema utama, argumen pendukung, dan contoh praktis.",
+      "Tambahkan sudut pandang serta pengalaman pribadi Anda sebagai benang merah tulisan."
+    ],
+    sections: [
+      {
+        heading: "Kurasi Sumber Sebelum Sintesis",
+        paragraphs: [
+          "Kualitas tulisan edukasi ditentukan oleh kualitas bahan bakunya. Daripada meminta AI mengarang dari ruang kosong, masukkan catatan hasil riset atau transkrip diskusi Anda sebagai bahan dasar.",
+          "Dari sana, gunakan AI untuk memetakan struktur logis sehingga pembaca dapat mengikuti alur gagasan dengan nyaman."
+        ]
+      }
+    ]
+  },
+  {
+    id: "sistem-distribusi-satu-pintu",
+    topic: "Produksi & Kurasi Konten",
+    tags: ["Produktivitas Solo", "Evaluasi Kualitas"],
+    readTime: "6 mnt baca",
+    title: "Sistem Konten Satu Pintu: Menurunkan Satu Esai Utama ke Berbagai Format",
+    excerpt: "Menjaga konsistensi pesan di artikel, newsletter, dan video singkat tanpa mengorbankan kedalaman pembahasan.",
+    takeaways: [
+      "Tulis satu karya induk yang mendalam setiap minggu sebagai pusat gagasan.",
+      "Turunkan karya induk menjadi ringkasan praktis, poin visual, dan skrip singkat.",
+      "Lakukan penyuntingan akhir pada setiap format agar sesuai dengan kebiasaan pembaca di kanal tersebut."
+    ],
+    sections: [
+      {
+        heading: "Satu Karya Induk, Banyak Turunan Bernilai",
+        paragraphs: [
+          "Membuat konten terpisah untuk setiap kanal setiap hari sangat menguras energi kreatif. Dengan pendekatan satu pintu, Anda memusatkan riset pada satu esai utama yang matang.",
+          "Setelah esai selesai, AI membantu mengekstrak sudut pandang paling relevan untuk dibagikan dalam format yang lebih ringkas."
+        ]
+      }
+    ]
+  },
+  {
+    id: "produk-digital-bernilai",
+    topic: "Monetisasi & Layanan AI",
+    tags: ["Studi Kasus"],
+    readTime: "6 mnt baca",
+    title: "Merancang Solusi & Layanan Berbasis AI yang Fokus pada Hasil Nyata Klien",
+    excerpt: "Klien tidak membeli kecanggihan teknologi AI—mereka mencari kejelasan, penghematan waktu, dan hasil yang dapat diandalkan.",
+    takeaways: [
+      "Komunikasikan manfaat bisnis dan efisiensi waktu, bukan istilah teknis model AI.",
+      "Kemas keahlian Anda dalam paket solusi terukur dengan ruang lingkup yang jelas.",
+      "Standar kualitas dan ketepatan waktu adalah fondasi kepercayaan jangka panjang."
+    ],
+    sections: [
+      {
+        heading: "Menjual Kejelasan Hasil, Bukan Sekadar Alat",
+        paragraphs: [
+          "Saat menawarkan solusi berbasis AI, hindari terjebak menjelaskan istilah teknis yang membingungkan. Fokuslah pada transformasi sebelum dan sesudah sistem diterapkan.",
+          "Kemas keahlian Anda dalam bentuk sistem siap pakai, pendampingan implementasi, atau layanan produksi terkurasi yang menjaga standar estetika dan kualitas."
+        ]
+      }
+    ]
+  },
+  {
+    id: "portofolio-sistem-ai",
+    topic: "Monetisasi & Layanan AI",
+    tags: ["Studi Kasus"],
+    readTime: "5 mnt baca",
+    title: "Membangun Portofolio Sistem AI yang Meyakinkan dari Proyek Nyata",
+    excerpt: "Cara mendokumentasikan studi kasus implementasi AI agar calon klien langsung memahami nilai kerja Anda.",
+    takeaways: [
+      "Tampilkan studi kasus dalam format Masalah Awal, Arsitektur Solusi, dan Dampak Terukur.",
+      "Sertakan demonstrasi alur kerja yang bersih dan mudah dipahami oleh non-teknis.",
+      "Bangun aset edukasi publik untuk menunjukkan kedalaman pemahaman Anda secara konsisten."
+    ],
+    sections: [
+      {
+        heading: "Anatomi Studi Kasus yang Mudah Dipercaya",
+        paragraphs: [
+          "Calon klien jauh lebih yakin ketika melihat bukti sistem yang bekerja rapi dibandingkan janji abstrak. Dokumentasikan setiap solusi yang Anda bangun—mulai dari alur layanan pelanggan hingga sistem katalog visual—sebagai studi kasus terstruktur."
+        ]
+      }
     ]
   }
 ];
@@ -1294,7 +1715,8 @@ let state = {
   resCat: "Semua",
   vidQuery: "",
   vidSort: "new",
-  artTag: "Semua Topik"
+  artMode: "all", /* "all" | "topic" | "tag" */
+  artVal: ""
 };
 
 const topbar = $("#topbar");
@@ -1308,7 +1730,8 @@ function setTab(nextTab, opts = {}) {
   state.tab = nextTab;
   if (opts.resCat !== undefined) state.resCat = opts.resCat;
   if (opts.vidQuery !== undefined) state.vidQuery = opts.vidQuery;
-  if (opts.artTag !== undefined) state.artTag = opts.artTag;
+  if (opts.artMode !== undefined) state.artMode = opts.artMode;
+  if (opts.artVal !== undefined) state.artVal = opts.artVal;
   const nextHash = nextTab === "home" ? "#home" : "#" + nextTab;
   if (location.hash !== nextHash) history.pushState({ tab: nextTab }, "", nextHash);
   render();
@@ -1347,7 +1770,7 @@ function renderResources() {
         </div>
       </div>
 
-      <div class="pills" style="margin-bottom:24px" aria-label="Filter fase resource">
+      <div class="pills" style="margin-bottom:28px" aria-label="Filter fase resource">
         ${cats.map(c => `<button class="pill ${state.resCat === c ? "on" : ""}" data-res-cat="${esc(c)}">${esc(c)}</button>`).join("")}
       </div>
 
@@ -1443,35 +1866,97 @@ function renderKnowledges() {
   `;
 }
 
+function getFilteredArticles() {
+  if (state.artMode === "topic") {
+    return ARTICLES.filter(a => a.topic === state.artVal);
+  }
+  if (state.artMode === "tag") {
+    return ARTICLES.filter(a => a.tags.includes(state.artVal));
+  }
+  return ARTICLES;
+}
+
 function renderArticles() {
-  const tagCounts = ARTICLES.reduce((acc, a) => {
-    acc[a.tag] = (acc[a.tag] || 0) + 1;
-    return acc;
-  }, {});
-  const tags = ["Semua Topik", ...Object.keys(tagCounts)];
-  const filtered = state.artTag === "Semua Topik"
-    ? ARTICLES
-    : ARTICLES.filter(a => a.tag === state.artTag);
+  const filtered = getFilteredArticles();
+  let bannerTitle = "Semua Artikel & Esai";
+  let bannerDesc = "Menampilkan seluruh koleksi tulisan terkurasi dari AI Creator Labs. Pilih kartu jalur topik atau tag di atas untuk menyaring.";
+  let bannerLabel = `${filtered.length} Artikel Tersedia`;
+
+  if (state.artMode === "topic") {
+    const tObj = ARTICLE_TOPICS.find(t => t.name === state.artVal);
+    bannerLabel = `Jalur Topik Utama • ${filtered.length} Artikel`;
+    bannerTitle = state.artVal;
+    bannerDesc = tObj ? tObj.desc : "";
+  } else if (state.artMode === "tag") {
+    const sObj = SECONDARY_TAGS.find(t => t.name === state.artVal);
+    bannerLabel = `Tag Fokus • ${filtered.length} Artikel`;
+    bannerTitle = `#${state.artVal}`;
+    bannerDesc = sObj ? sObj.desc : "";
+  }
 
   return `
     <section>
       <div class="sec-head">
         <h2>Articles</h2>
-        <p class="lead">Pilih topik atau tag di bawah ini untuk menelusuri esai dan catatan pembelajaran terkait.</p>
+        <p class="lead">Enam jalur topik utama beserta tag khusus. Pilih salah satu topik untuk membaca kumpulan artikel di dalamnya.</p>
       </div>
-      <div class="pills" style="margin-bottom:24px" aria-label="Filter topik artikel">
-        ${tags.map(t => {
-          const count = t === "Semua Topik" ? ARTICLES.length : tagCounts[t];
-          return `<button class="pill ${state.artTag === t ? "on" : ""}" data-art-tag="${esc(t)}">${esc(t)} <small>(${count})</small></button>`;
+
+      <div class="grid" aria-label="Jalur topik utama">
+        ${ARTICLE_TOPICS.map(t => {
+          const count = ARTICLES.filter(a => a.topic === t.name).length;
+          const isActive = state.artMode === "topic" && state.artVal === t.name;
+          return `
+            <button class="card ${isActive ? "on" : ""}" data-select-topic="${esc(t.name)}">
+              <div class="cat">Jalur Topik</div>
+              <h3>${esc(t.name)}</h3>
+              <p>${esc(t.desc)}</p>
+              <div class="ft">
+                <span>${count} artikel terkurasi</span>
+                <span>${isActive ? "Sedang dibuka ✓" : "Lihat artikel →"}</span>
+              </div>
+            </button>
+          `;
         }).join("")}
       </div>
+
+      <div class="art-subhead">
+        <h3>Topik Lainnya</h3>
+        <span>Telusuri berdasarkan fokus praktik spesifik</span>
+      </div>
+      <div class="pills" aria-label="Tag topik lainnya">
+        <button class="pill ${state.artMode === "all" ? "on" : ""}" data-clear-art-filter>
+          Semua Artikel <small>(${ARTICLES.length})</small>
+        </button>
+        ${SECONDARY_TAGS.map(st => {
+          const count = ARTICLES.filter(a => a.tags.includes(st.name)).length;
+          const isActive = state.artMode === "tag" && state.artVal === st.name;
+          return `
+            <button class="pill ${isActive ? "on" : ""}" data-select-sec-tag="${esc(st.name)}">
+              ${esc(st.name)} <small>(${count})</small>
+            </button>
+          `;
+        }).join("")}
+      </div>
+
+      <div class="tag-banner" id="art-results-anchor">
+        <div class="tag-banner-info">
+          <div class="cat">${esc(bannerLabel)}</div>
+          <h3>${esc(bannerTitle)}</h3>
+          <p>${esc(bannerDesc)}</p>
+        </div>
+        ${state.artMode !== "all" ? `<button class="back-btn" data-clear-art-filter>Tampilkan Semua (${ARTICLES.length})</button>` : ""}
+      </div>
+
       <div class="article-list">
         ${filtered.map(a => `
           <button class="article-row" data-open-art="${a.id}">
             <div>
-              <div class="article-meta">${esc(a.tag)} <span>• ${esc(a.readTime)}</span></div>
-              <h3>${esc(a.title)}</h3>
+              <div class="article-meta">${esc(a.topic)} <span>• ${esc(a.readTime)}</span></div>
+              <h4>${esc(a.title)}</h4>
               <p>${esc(a.excerpt)}</p>
+              <div class="article-tags-inline">
+                ${a.tags.map(tg => `<span class="mini-tag">#${esc(tg)}</span>`).join("")}
+              </div>
             </div>
             <span class="ar" aria-hidden="true">→</span>
           </button>
@@ -1521,16 +2006,50 @@ let modalTrigger = null;
 function openModal(html) {
   modalTrigger = document.activeElement;
   modalBox.innerHTML = html;
+  modalBox.scrollTop = 0;
   const heading = modalBox.querySelector("h3");
   if (heading) { heading.id = "modal-title"; modalBg.setAttribute("aria-labelledby", "modal-title"); }
   modalBg.classList.add("open");
   const first = modalBox.querySelector("button, a, iframe, [tabindex]");
   if (first && first.tagName !== "IFRAME") first.focus();
 }
+
 function closeModal() {
   modalBg.classList.remove("open");
   modalBox.innerHTML = "";
   if (modalTrigger && typeof modalTrigger.focus === "function") modalTrigger.focus();
+}
+
+function openArticleModal(artId) {
+  const list = getFilteredArticles();
+  const pool = list.some(a => a.id === artId) ? list : ARTICLES;
+  const idx = pool.findIndex(a => a.id === artId);
+  const art = pool[idx];
+  if (!art) return;
+  const nextArt = pool.length > 1 ? pool[(idx + 1) % pool.length] : null;
+
+  openModal(`
+    <div class="modal-top">
+      <span class="cat">${esc(art.topic)} • ${esc(art.readTime)}</span>
+      <button class="modal-close" data-close-modal aria-label="Tutup">✕</button>
+    </div>
+    <h3>${esc(art.title)}</h3>
+    <p style="color:var(--tx);font-weight:400">${esc(art.excerpt)}</p>
+    <div class="takeaways">
+      <div class="takeaways-title">Intisari Utama</div>
+      <ul>
+        ${art.takeaways.map(pt => `<li>${esc(pt)}</li>`).join("")}
+      </ul>
+    </div>
+    ${art.sections.map(sec => `
+      <h4>${esc(sec.heading)}</h4>
+      ${sec.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}
+    `).join("")}
+    <div class="modal-actions">
+      <button class="back-btn" data-close-modal>← Kembali ke Daftar Artikel</button>
+      ${nextArt ? `<button class="btn-primary" data-open-art="${nextArt.id}">Berikutnya: ${esc(nextArt.title.slice(0, 34))}… →</button>` : ""}
+    </div>
+  `);
 }
 
 modalBg.onclick = e => {
@@ -1570,7 +2089,8 @@ homeControls.onclick = e => {
     setTab(pill.dataset.go, {
       resCat: pill.dataset.cat || "Semua",
       vidQuery: pill.dataset.q || "",
-      artTag: pill.dataset.tag || "Semua Topik"
+      artMode: pill.dataset.artMode || "all",
+      artVal: pill.dataset.artVal || ""
     });
   }
 };
@@ -1587,11 +2107,11 @@ $("#chat-form").onsubmit = e => {
   const kw = raw.toLowerCase();
   const resMatches = RESOURCES.filter(r => (r.title + " " + r.desc + " " + r.cat + " " + r.detail + " " + r.template).toLowerCase().includes(kw));
   const vidMatches = VIDEOS.filter(v => v[0].toLowerCase().includes(kw));
-  const artMatches = ARTICLES.filter(a => (a.title + " " + a.excerpt + " " + a.tag + " " + a.body.join(" ")).toLowerCase().includes(kw));
+  const artMatches = ARTICLES.filter(a => (a.title + " " + a.excerpt + " " + a.topic + " " + a.tags.join(" ")).toLowerCase().includes(kw));
   const links = [
-    ...resMatches.slice(0,3).map(r => `<button class="pill" data-open-res="${r.id}">Resource: ${esc(r.title)}</button>`),
-    ...vidMatches.slice(0,3).map(v => `<button class="pill" data-open-vid="${v[1]}" data-vid-title="${esc(v[0])}" data-vid-dur="${esc(v[2])}">Video: ${esc(v[0])}</button>`),
-    ...artMatches.slice(0,3).map(a => `<button class="pill" data-open-art="${a.id}">Artikel: ${esc(a.title)}</button>`)
+    ...resMatches.slice(0, 3).map(r => `<button class="pill" data-open-res="${r.id}">Resource: ${esc(r.title)}</button>`),
+    ...vidMatches.slice(0, 3).map(v => `<button class="pill" data-open-vid="${v[1]}" data-vid-title="${esc(v[0])}" data-vid-dur="${esc(v[2])}">Video: ${esc(v[0])}</button>`),
+    ...artMatches.slice(0, 3).map(a => `<button class="pill" data-open-art="${a.id}">Artikel: ${esc(a.title)}</button>`)
   ];
   out.innerHTML = `
     <div class="chat-reply">
@@ -1599,7 +2119,7 @@ $("#chat-form").onsubmit = e => {
         <span>Hasil pencarian untuk "${esc(raw)}"</span>
         <button class="chat-close" id="close-chat" aria-label="Tutup rekomendasi">✕</button>
       </div>
-      <p>${links.length ? `Ditemukan ${links.length} materi yang cocok (maksimal 3 per kategori):` : `Belum ditemukan materi yang cocok dengan kata kunci tersebut. Coba kata yang lebih umum, seperti prompt, AI, video, atau kreativitas.`}</p>
+      <p>${links.length ? `Ditemukan ${links.length} materi yang cocok:` : `Belum ditemukan materi yang cocok dengan kata kunci tersebut. Coba kata seperti prompt, agent, otomasi, riset, atau monetisasi.`}</p>
       <div class="chat-links">${links.join("")}</div>
     </div>
   `;
@@ -1630,9 +2150,39 @@ document.body.addEventListener("click", e => {
     return;
   }
 
-  const artTagBtn = e.target.closest("[data-art-tag]");
-  if (artTagBtn) {
-    state.artTag = artTagBtn.dataset.artTag;
+  const topicCard = e.target.closest("[data-select-topic]");
+  if (topicCard) {
+    const val = topicCard.dataset.selectTopic;
+    if (state.artMode === "topic" && state.artVal === val) {
+      state.artMode = "all";
+      state.artVal = "";
+    } else {
+      state.artMode = "topic";
+      state.artVal = val;
+    }
+    render();
+    $("#art-results-anchor")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    return;
+  }
+
+  const secTagBtn = e.target.closest("[data-select-sec-tag]");
+  if (secTagBtn) {
+    const val = secTagBtn.dataset.selectSecTag;
+    if (state.artMode === "tag" && state.artVal === val) {
+      state.artMode = "all";
+      state.artVal = "";
+    } else {
+      state.artMode = "tag";
+      state.artVal = val;
+    }
+    render();
+    $("#art-results-anchor")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    return;
+  }
+
+  if (e.target.closest("[data-clear-art-filter]")) {
+    state.artMode = "all";
+    state.artVal = "";
     render();
     return;
   }
@@ -1684,16 +2234,7 @@ document.body.addEventListener("click", e => {
 
   const artRow = e.target.closest("[data-open-art]");
   if (artRow) {
-    const art = ARTICLES.find(a => a.id === artRow.dataset.openArt);
-    if (!art) return;
-    openModal(`
-      <div class="modal-top">
-        <span class="cat">${esc(art.tag)} • ${esc(art.readTime)}</span>
-        <button class="modal-close" data-close-modal aria-label="Tutup">✕</button>
-      </div>
-      <h3>${esc(art.title)}</h3>
-      ${art.body.map(p => `<p>${esc(p)}</p>`).join("")}
-    `);
+    openArticleModal(artRow.dataset.openArt);
   }
 });
 
