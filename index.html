@@ -1108,6 +1108,9 @@ footer {
 }
 
 @media (max-width: 640px) {
+  header.is-home {
+    padding: 12px 0 20px;
+  }
   main {
     padding: 24px 16px 56px;
   }
@@ -1172,7 +1175,7 @@ footer {
 
     <div id="home-controls">
       <div class="pills center" aria-label="Pintasan topik populer">
-        <button class="pill" data-go="resources" data-cat="Fondasi & Riset AI">Mulai dari Nol: AI Foundations</button>
+        <button class="pill" data-go="resources" data-cat="Fondasi & Riset AI">Mulai dari Nol</button>
         <button class="pill" data-go="knowledges" data-q="24/7">Bangun AI Agent 24/7</button>
         <button class="pill" data-go="resources" data-cat="Prompt & Evaluasi Kualitas">Prompt Architecture</button>
         <button class="pill" data-go="knowledges" data-q="Income">AI Income Blueprint</button>
@@ -1183,7 +1186,7 @@ footer {
       <div class="chat-wrap">
         <form class="chat-box" id="chat-form">
           <span class="chat-icon" aria-hidden="true">✦</span>
-          <input id="chat-input" type="text" placeholder="Tanyakan topik AI atau materi yang ingin dipelajari..." aria-label="Tanyakan topik pembelajaran AI">
+          <input id="chat-input" type="text" placeholder="Mau belajar apa hari ini?" aria-label="Tanyakan topik pembelajaran AI">
           <button class="chat-send" type="submit">Jelajahi →</button>
         </form>
         <div id="chat-output"></div>
@@ -2270,7 +2273,7 @@ for (let i = 0; i < particleCount; i++) {
     r: Math.random() * 1.4 + 1.4,
     speedY: Math.random() * 0.25 + 0.1,
     drift: Math.random() * Math.PI * 2,
-    alpha: Math.random() * 0.42 + 0.32
+    alpha: Math.random() * 0.24 + 0.18
   });
 }
 
